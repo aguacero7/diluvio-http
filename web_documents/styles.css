@@ -59,7 +59,7 @@ p {
     display: block;
     width: 150px;
     margin: 20px auto 0;
-    background-color: #3498db; /* Blue */
+    background-color: #3498de; /* Blue */
     color: #ffffff; /* White */
     padding: 10px 20px;
     text-decoration: none;
@@ -69,5 +69,5 @@ p {
 }
 
 .btn:hover {
-    background-color: #2980b9; /* Darker blue on hover */
+    background-color: #2980bc; /* Darker blue on hover */
 }

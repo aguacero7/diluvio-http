@@ -22,3 +22,65 @@ MX
 
 
 DHCP 
+
+
+Create the Service Unit File:
+
+Create a new file named diluvio.service in the /etc/systemd/system/ directory. You might need superuser privileges to create this file.
+
+bash
+
+sudo nano /etc/systemd/system/diluvio.service
+
+Add Service Configuration:
+
+Add the following content to the diluvio.service file. Modify the paths according to your project setup.
+
+plaintext
+
+[Unit]
+Description=Diluvio Networking Service
+After=network.target
+
+[Service]
+Type=simple
+User=your_username
+WorkingDirectory=/path/to/your/application
+ExecStart=/path/to/your/application/binary
+
+[Install]
+WantedBy=multi-user.target
+
+    Description: A brief description of your service.
+    After: Defines the order in which this service should start in relation to other services (after the network is available in this case).
+    Type: The type of service. simple indicates that the service is not managed by systemd and doesn't fork.
+    User: Specify the user under which the service should run.
+    WorkingDirectory: The directory where your application is located.
+    ExecStart: The command to start your application.
+
+Reload systemd:
+
+After creating or modifying a systemd unit file, you need to reload systemd to make it aware of the changes.
+
+bash
+
+sudo systemctl daemon-reload
+
+Start and Enable the Service:
+
+Now, you can start your service and enable it to start automatically on system boot.
+
+bash
+
+sudo systemctl start diluvio
+sudo systemctl enable diluvio
+
+Check the Status:
+
+To check the status of your service:
+
+bash
+
+sudo systemctl status diluvio
+
+This will display information about whether the service is running or not and any errors encountered during startup.
