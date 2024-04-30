@@ -26,13 +26,13 @@ fn handle_client(mut stream: TcpStream) -> io::Result<()> {
 
                     if Path::new(&file_path).exists() {
                         if file_path.ends_with(".php") {
-                            let output = Command::new("php-cgi")
+                            let output = Command::new("php")
                                 .arg(&file_path)
                                 .output()
                                 .expect("failed to execute PHP script");
                         
                             let php_response = String::from_utf8_lossy(&output.stdout);
-
+                            
                             stream.write_all(b"HTTP/1.1 200 OK\r\n")?;
                             stream.write_all(b"Content-Type: text/html; charset=UTF-8\r\n")?;
                             stream.write_all(b"\r\n")?;
