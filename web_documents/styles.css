@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #96c0ce; /* Light blue */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #ffffff; /* White */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333333; /* Dark gray */
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Add margin to separate rows */
+}
+
+.card {
+    width: calc(50% - 20px);
+    background-color: #f9f9f9; /* Light gray */
+    margin-right: 20px; /* Add margin between cards */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center text */
+}
+
+.card:last-child {
+    margin-right: 0; /* Remove margin from the last card */
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        width: calc(100% - 20px);
+        margin-right: 0; /* Remove margin for smaller screens */
+    }
+}
+
+h2 {
+    color: #333333; /* Dark gray */
+}
+
+p {
+    color: #666666; /* Medium gray */
+    line-height: 1.6;
+}
+
+.btn {
+    display: block;
+    width: 150px;
+    margin: 20px auto 0;
+    background-color: #3498db; /* Blue */
+    color: #ffffff; /* White */
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
