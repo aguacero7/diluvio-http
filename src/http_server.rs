@@ -26,7 +26,7 @@ fn handle_client(mut stream: TcpStream) -> io::Result<()> {
 
                     if Path::new(&file_path).exists() {
                         if file_path.ends_with(".php") {
-                            let output = Command::new("php")
+                            let output = Command::new("php-cgi")
                                 .arg(&file_path)
                                 .output()
                                 .expect("failed to execute PHP script");
