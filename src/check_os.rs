@@ -1,8 +1,12 @@
-use std::process::{Command, ExitStatus};
+use std::process::Command;
 use std::env;
 use std::fs;
 use reqwest;
-use zip;
+use std::path::{Path,PathBuf};
+use std::fs::File;
+use zip::ZipArchive;
+use std::borrow::ToOwned;
+
 fn install_php() -> Result<(), String> {
     let os = env::consts::OS;
     println!("Système d'exploitation: {}", os);
@@ -103,6 +107,7 @@ fn download_php_from_site(os: &str) -> Result<(), String> {
     Ok(())
 }
 
+
 fn install_php_from_zip(zip_file: &str, destination: &str) -> Result<(), String> {
     println!("Installation de PHP depuis le fichier zip...");
 
@@ -111,10 +116,13 @@ fn install_php_from_zip(zip_file: &str, destination: &str) -> Result<(), String>
 
     for i in 0..archive.len() {
         let mut file = archive.by_index(i).map_err(|e| format!("Impossible de lire le fichier dans le zip : {}", e))?;
-        let mut outpath = Path::new(destination);
-        outpath.push(file.sanitized_name());
+        let mut outpath = PathBuf::from(destination);
+        
+        let filename = file.mangled_name().map_or_else(|| file.name().to_owned(), |name| name.into_owned());
+        
+        outpath.push(&filename);
 
-        if (&*file.name()).ends_with('/') {
+        if filename.ends_with('/') {
             fs::create_dir_all(&outpath).map_err(|e| format!("Impossible de créer le répertoire : {}", e))?;
         } else {
             if let Some(p) = outpath.parent() {
@@ -132,6 +140,9 @@ fn install_php_from_zip(zip_file: &str, destination: &str) -> Result<(), String>
 
     Ok(())
 }
+
+
+
 
 pub fn is_php_installed() -> bool {
     match env::consts::OS {

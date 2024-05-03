@@ -11,7 +11,6 @@ fn main() -> io::Result<()> {
     // TODO: Load configuration from file
     // TODO: Start DNS server
     // TODO: Start DHCP server
-    println("Vérification des fichiers");
     if check_os::is_php_installed() {
         println!("PHP est installé sur cette machine.");
     } else {
