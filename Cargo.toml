@@ -1,9 +1,15 @@
 [package]
-name = "diluvio-net"
-version = "0.1.1"
+name = "diluvio-http"
+version = "0.1.2"
+authors = ["Aguacero"]
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 rusqlite = "0.25.3"
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+zip = "0.5"
+cargo_metadata = "0.15.1"
+clap = "3.0"
+gtk = "0.9.0"
+app = "0.6.5"
+tokio = { version = "1", features = ["full"] }
