@@ -2,7 +2,7 @@ mod http_server;
 mod dns_server;
 mod dhcp_server;
 mod load_conf;
-
+mod check_os;
 use std::io;
 
 fn main() -> io::Result<()> {
@@ -11,7 +11,11 @@ fn main() -> io::Result<()> {
     // TODO: Load configuration from file
     // TODO: Start DNS server
     // TODO: Start DHCP server
-
+    if check_os::is_php_installed() {
+        println!("PHP est installé sur cette machine.");
+    } else {
+        println!("PHP n'est pas installé sur cette machine.");
+    }
 
     http_server::start_http_server("127.0.0.1:3000")
     // dns_server::start_dns_server("127.0.0.1:53")
